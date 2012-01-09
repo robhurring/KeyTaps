@@ -11,16 +11,26 @@
 @implementation AppDelegate
 
 @synthesize keyTaps;
-@synthesize menuLabel;
+@synthesize charCountLabel;
+@synthesize lastResetLabel;
 @synthesize appMenu;
 @synthesize statusItem;
 @synthesize monitor;
 @synthesize formatter;
+@synthesize menuImage;
+@synthesize menuImageAlt;
+@synthesize lastReset;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+  menuImage = [[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForImageResource:@"keytap.png"]];
+  menuImageAlt = [[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForImageResource:@"keytap-alt.png"]];
+  
   statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
   [statusItem setMenu: appMenu];
+  [statusItem setImage:menuImage];
+  [statusItem setAlternateImage:menuImageAlt];
+  
   [statusItem setHighlightMode:YES];
   [statusItem setTarget:self];
   
@@ -29,17 +39,6 @@
 
   [self load];
   [self startMonitoring];
-}
-
--(IBAction)quit:(id)sender
-{
-  [self applicationWillTerminate:nil];
-  exit(0);
-}
-
--(IBAction) reset:(id)sender
-{
-  [self reset];
 }
 
 -(void) applicationWillTerminate:(NSNotification *)notification
@@ -60,6 +59,19 @@
   }];
 }
 
+-(void) stopMonitoring
+{
+  if(monitor)
+    [NSEvent removeMonitor:monitor];
+}
+
+# pragma mark Actions
+
+-(IBAction) reset:(id)sender
+{
+  [self reset];
+}
+
 -(void)reset
 {
   keyTaps = 0LL;
@@ -70,14 +82,7 @@
 -(void) update
 {
   NSString *output = [formatter stringFromNumber:[NSNumber numberWithLongLong:keyTaps]];
-  [statusItem setTitle:[NSString stringWithFormat:@"%@ chars", output]];
-  [menuLabel setTitle:[NSString stringWithFormat:@"%@ KeyTaps", output]];
-}
-
--(void) stopMonitoring
-{
-  if(monitor)
-    [NSEvent removeMonitor:monitor];
+  [charCountLabel setTitleWithMnemonic:output];
 }
 
 # pragma mark Persistence
@@ -86,19 +91,29 @@
 {
   NSString *filePath = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"data.plist"];
   NSDictionary *data = [NSDictionary dictionaryWithContentsOfFile:filePath];
-  NSNumber *taps = [data objectForKey:@"taps"];
   
-  if(taps)
-    keyTaps = [taps longLongValue];
-  else
+  keyTaps = [[data objectForKey:@"taps"] longLongValue];
+  lastReset = [data objectForKey:@"lastReset"];
+
+  if(!keyTaps)
     keyTaps = 0LL;
+  
+  if(!lastReset)
+    lastReset = [[NSDate alloc] init];
+  
+  NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+  [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+  
+  [lastResetLabel setTitleWithMnemonic:[NSString stringWithFormat:@"chars since %@", [dateFormatter stringFromDate:lastReset]]];
     
   [self update];
 }
 
 -(void) save
 {
-  NSDictionary *data = [NSDictionary dictionaryWithObject:[NSNumber numberWithLongLong:keyTaps] forKey:@"taps"];
+  NSMutableDictionary *data = [NSMutableDictionary dictionary];
+  [data setObject:[NSNumber numberWithLongLong:keyTaps] forKey:@"taps"];
+   
   NSString *filePath = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"data.plist"];
 
   [data writeToFile:filePath atomically: YES];

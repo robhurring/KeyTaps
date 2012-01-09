@@ -13,6 +13,8 @@
 		D4F84A4614BB8ADD00CDE1F0 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D4F84A4414BB8ADD00CDE1F0 /* Credits.rtf */; };
 		D4F84A4914BB8ADD00CDE1F0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F84A4814BB8ADD00CDE1F0 /* AppDelegate.m */; };
 		D4F84A4C14BB8ADD00CDE1F0 /* App.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4F84A4A14BB8ADD00CDE1F0 /* App.xib */; };
+		D4F84A8114BBA89B00CDE1F0 /* keytap.png in Resources */ = {isa = PBXBuildFile; fileRef = D4F84A8014BBA89B00CDE1F0 /* keytap.png */; };
+		D4F84A8314BBAA1900CDE1F0 /* keytap-alt.png in Resources */ = {isa = PBXBuildFile; fileRef = D4F84A8214BBAA1900CDE1F0 /* keytap-alt.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +31,8 @@
 		D4F84A4714BB8ADD00CDE1F0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		D4F84A4814BB8ADD00CDE1F0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		D4F84A4B14BB8ADD00CDE1F0 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/App.xib; sourceTree = "<group>"; };
+		D4F84A8014BBA89B00CDE1F0 /* keytap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = keytap.png; sourceTree = "<group>"; };
+		D4F84A8214BBAA1900CDE1F0 /* keytap-alt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "keytap-alt.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +97,8 @@
 		D4F84A3C14BB8ADD00CDE1F0 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D4F84A8214BBAA1900CDE1F0 /* keytap-alt.png */,
+				D4F84A8014BBA89B00CDE1F0 /* keytap.png */,
 				D4F84A3D14BB8ADD00CDE1F0 /* KeyTaps-Info.plist */,
 				D4F84A3E14BB8ADD00CDE1F0 /* InfoPlist.strings */,
 				D4F84A4114BB8ADD00CDE1F0 /* main.m */,
@@ -156,6 +162,8 @@
 				D4F84A4014BB8ADD00CDE1F0 /* InfoPlist.strings in Resources */,
 				D4F84A4614BB8ADD00CDE1F0 /* Credits.rtf in Resources */,
 				D4F84A4C14BB8ADD00CDE1F0 /* App.xib in Resources */,
+				D4F84A8114BBA89B00CDE1F0 /* keytap.png in Resources */,
+				D4F84A8314BBAA1900CDE1F0 /* keytap-alt.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,13 +11,18 @@
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
 @property (retain) id monitor;
+@property (retain) IBOutlet NSMenu *appMenu;
+@property (retain) IBOutlet NSTextField *charCountLabel;
+@property (retain) IBOutlet NSTextField *lastResetLabel;
+
 @property (retain) NSNumberFormatter *formatter;
 @property (retain) NSStatusItem *statusItem;
-@property (retain) IBOutlet NSMenu *appMenu;
-@property (retain) IBOutlet NSMenuItem *menuLabel;
+@property (retain) NSImage *menuImage;
+@property (retain) NSImage *menuImageAlt;
+
+@property (retain) NSDate *lastReset;
 @property (assign) long long keyTaps;
 
--(IBAction) quit:(id)sender;
 -(IBAction) reset:(id)sender;
 
 -(void) startMonitoring;
