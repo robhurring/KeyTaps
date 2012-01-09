@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'KeyTaps' target in the 'KeyTaps' project
+//
+
+#ifdef __OBJC__
+  #import <Cocoa/Cocoa.h>
+#endif
