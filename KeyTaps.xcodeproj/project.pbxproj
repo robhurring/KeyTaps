@@ -12,7 +12,8 @@
 		D4F84A4214BB8ADD00CDE1F0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F84A4114BB8ADD00CDE1F0 /* main.m */; };
 		D4F84A4614BB8ADD00CDE1F0 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D4F84A4414BB8ADD00CDE1F0 /* Credits.rtf */; };
 		D4F84A4914BB8ADD00CDE1F0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F84A4814BB8ADD00CDE1F0 /* AppDelegate.m */; };
-		D4F84A4C14BB8ADD00CDE1F0 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4F84A4A14BB8ADD00CDE1F0 /* MainMenu.xib */; };
+		D4F84A4C14BB8ADD00CDE1F0 /* App.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4F84A4A14BB8ADD00CDE1F0 /* App.xib */; };
+		D4F84A5314BB949A00CDE1F0 /* data.plist in Resources */ = {isa = PBXBuildFile; fileRef = D4F84A5214BB949A00CDE1F0 /* data.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,14 +22,15 @@
 		D4F84A3814BB8ADD00CDE1F0 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		D4F84A3914BB8ADD00CDE1F0 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		D4F84A3A14BB8ADD00CDE1F0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		D4F84A3D14BB8ADD00CDE1F0 /* KeyTaps-Info.plist */ = {isa = PBXFileReference; path = "KeyTaps-Info.plist"; sourceTree = "<group>"; };
+		D4F84A3D14BB8ADD00CDE1F0 /* KeyTaps-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "KeyTaps-Info.plist"; sourceTree = "<group>"; };
 		D4F84A3F14BB8ADD00CDE1F0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D4F84A4114BB8ADD00CDE1F0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		D4F84A4314BB8ADD00CDE1F0 /* KeyTaps-Prefix.pch */ = {isa = PBXFileReference; path = "KeyTaps-Prefix.pch"; sourceTree = "<group>"; };
+		D4F84A4314BB8ADD00CDE1F0 /* KeyTaps-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KeyTaps-Prefix.pch"; sourceTree = "<group>"; };
 		D4F84A4514BB8ADD00CDE1F0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
-		D4F84A4714BB8ADD00CDE1F0 /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		D4F84A4714BB8ADD00CDE1F0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		D4F84A4814BB8ADD00CDE1F0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		D4F84A4B14BB8ADD00CDE1F0 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		D4F84A4B14BB8ADD00CDE1F0 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/App.xib; sourceTree = "<group>"; };
+		D4F84A5214BB949A00CDE1F0 /* data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = data.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,7 +86,7 @@
 			children = (
 				D4F84A4714BB8ADD00CDE1F0 /* AppDelegate.h */,
 				D4F84A4814BB8ADD00CDE1F0 /* AppDelegate.m */,
-				D4F84A4A14BB8ADD00CDE1F0 /* MainMenu.xib */,
+				D4F84A4A14BB8ADD00CDE1F0 /* App.xib */,
 				D4F84A3C14BB8ADD00CDE1F0 /* Supporting Files */,
 			);
 			path = KeyTaps;
@@ -95,6 +97,7 @@
 			children = (
 				D4F84A3D14BB8ADD00CDE1F0 /* KeyTaps-Info.plist */,
 				D4F84A3E14BB8ADD00CDE1F0 /* InfoPlist.strings */,
+				D4F84A5214BB949A00CDE1F0 /* data.plist */,
 				D4F84A4114BB8ADD00CDE1F0 /* main.m */,
 				D4F84A4314BB8ADD00CDE1F0 /* KeyTaps-Prefix.pch */,
 				D4F84A4414BB8ADD00CDE1F0 /* Credits.rtf */,
@@ -155,7 +158,8 @@
 			files = (
 				D4F84A4014BB8ADD00CDE1F0 /* InfoPlist.strings in Resources */,
 				D4F84A4614BB8ADD00CDE1F0 /* Credits.rtf in Resources */,
-				D4F84A4C14BB8ADD00CDE1F0 /* MainMenu.xib in Resources */,
+				D4F84A4C14BB8ADD00CDE1F0 /* App.xib in Resources */,
+				D4F84A5314BB949A00CDE1F0 /* data.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -190,12 +194,12 @@
 			name = Credits.rtf;
 			sourceTree = "<group>";
 		};
-		D4F84A4A14BB8ADD00CDE1F0 /* MainMenu.xib */ = {
+		D4F84A4A14BB8ADD00CDE1F0 /* App.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				D4F84A4B14BB8ADD00CDE1F0 /* en */,
 			);
-			name = MainMenu.xib;
+			name = App.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
