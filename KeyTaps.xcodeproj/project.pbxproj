@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D416885C14BBB6E90008ACFC /* KeyTaps-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D416885B14BBB6E90008ACFC /* KeyTaps-Info.plist */; };
+		D416885E14BBB7060008ACFC /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D416885D14BBB7060008ACFC /* icon.png */; };
 		D4F84A3614BB8ADD00CDE1F0 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4F84A3514BB8ADD00CDE1F0 /* Cocoa.framework */; };
 		D4F84A4014BB8ADD00CDE1F0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D4F84A3E14BB8ADD00CDE1F0 /* InfoPlist.strings */; };
 		D4F84A4214BB8ADD00CDE1F0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F84A4114BB8ADD00CDE1F0 /* main.m */; };
@@ -18,12 +20,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D416885B14BBB6E90008ACFC /* KeyTaps-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "KeyTaps-Info.plist"; sourceTree = "<group>"; };
+		D416885D14BBB7060008ACFC /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		D4F84A3114BB8ADD00CDE1F0 /* KeyTaps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KeyTaps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4F84A3514BB8ADD00CDE1F0 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		D4F84A3814BB8ADD00CDE1F0 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		D4F84A3914BB8ADD00CDE1F0 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		D4F84A3A14BB8ADD00CDE1F0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		D4F84A3D14BB8ADD00CDE1F0 /* KeyTaps-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "KeyTaps-Info.plist"; sourceTree = "<group>"; };
 		D4F84A3F14BB8ADD00CDE1F0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D4F84A4114BB8ADD00CDE1F0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D4F84A4314BB8ADD00CDE1F0 /* KeyTaps-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KeyTaps-Prefix.pch"; sourceTree = "<group>"; };
@@ -98,8 +101,9 @@
 			isa = PBXGroup;
 			children = (
 				D4F84A8214BBAA1900CDE1F0 /* keytap-alt.png */,
+				D416885D14BBB7060008ACFC /* icon.png */,
 				D4F84A8014BBA89B00CDE1F0 /* keytap.png */,
-				D4F84A3D14BB8ADD00CDE1F0 /* KeyTaps-Info.plist */,
+				D416885B14BBB6E90008ACFC /* KeyTaps-Info.plist */,
 				D4F84A3E14BB8ADD00CDE1F0 /* InfoPlist.strings */,
 				D4F84A4114BB8ADD00CDE1F0 /* main.m */,
 				D4F84A4314BB8ADD00CDE1F0 /* KeyTaps-Prefix.pch */,
@@ -164,6 +168,8 @@
 				D4F84A4C14BB8ADD00CDE1F0 /* App.xib in Resources */,
 				D4F84A8114BBA89B00CDE1F0 /* keytap.png in Resources */,
 				D4F84A8314BBAA1900CDE1F0 /* keytap-alt.png in Resources */,
+				D416885C14BBB6E90008ACFC /* KeyTaps-Info.plist in Resources */,
+				D416885E14BBB7060008ACFC /* icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,6 +303,7 @@
 				D4F84A5114BB8ADD00CDE1F0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

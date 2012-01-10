@@ -15,7 +15,9 @@
 @property (retain) IBOutlet NSTextField *charCountLabel;
 @property (retain) IBOutlet NSTextField *lastResetLabel;
 
-@property (retain) NSNumberFormatter *formatter;
+@property (retain) NSNumberFormatter *numberFormatter;
+@property (retain) NSDateFormatter *dateFormatter;
+
 @property (retain) NSStatusItem *statusItem;
 @property (retain) NSImage *menuImage;
 @property (retain) NSImage *menuImageAlt;

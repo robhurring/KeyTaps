@@ -16,10 +16,11 @@
 @synthesize appMenu;
 @synthesize statusItem;
 @synthesize monitor;
-@synthesize formatter;
 @synthesize menuImage;
 @synthesize menuImageAlt;
 @synthesize lastReset;
+@synthesize numberFormatter;
+@synthesize dateFormatter;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
@@ -27,15 +28,18 @@
   menuImageAlt = [[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForImageResource:@"keytap-alt.png"]];
   
   statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
-  [statusItem setMenu: appMenu];
+  [statusItem setMenu:appMenu];
   [statusItem setImage:menuImage];
   [statusItem setAlternateImage:menuImageAlt];
   
   [statusItem setHighlightMode:YES];
   [statusItem setTarget:self];
   
-  formatter = [[NSNumberFormatter alloc] init];
-  [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+  numberFormatter = [[NSNumberFormatter alloc] init];
+  [numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
+  
+  dateFormatter = [[NSDateFormatter alloc] init];
+  [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
 
   [self load];
   [self startMonitoring];
@@ -75,14 +79,19 @@
 -(void)reset
 {
   keyTaps = 0LL;
+  lastReset = [[NSDate alloc] init];
+  
   [self save];
   [self update];
 }
 
 -(void) update
 {
-  NSString *output = [formatter stringFromNumber:[NSNumber numberWithLongLong:keyTaps]];
+  NSString *output = [numberFormatter stringFromNumber:[NSNumber numberWithLongLong:keyTaps]];
   [charCountLabel setTitleWithMnemonic:output];
+    
+  output = [dateFormatter stringFromDate:lastReset];
+  [lastResetLabel setTitleWithMnemonic:[NSString stringWithFormat:@"Chars since %@", output]];
 }
 
 # pragma mark Persistence
@@ -100,12 +109,7 @@
   
   if(!lastReset)
     lastReset = [[NSDate alloc] init];
-  
-  NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-  [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
-  
-  [lastResetLabel setTitleWithMnemonic:[NSString stringWithFormat:@"chars since %@", [dateFormatter stringFromDate:lastReset]]];
-    
+      
   [self update];
 }
 
@@ -113,6 +117,7 @@
 {
   NSMutableDictionary *data = [NSMutableDictionary dictionary];
   [data setObject:[NSNumber numberWithLongLong:keyTaps] forKey:@"taps"];
+  [data setObject:lastReset forKey:@"lastReset"];
    
   NSString *filePath = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"data.plist"];
 
