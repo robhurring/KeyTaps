@@ -9,7 +9,7 @@
 #import "KeyTaps.h"
 #import "KTSession.h"
 
-#define MAX_SESSIONS 5;
+#define MAX_SESSIONS 3
 
 @implementation KeyTaps
 
@@ -74,8 +74,24 @@
 {
   if(all)
     lifetime = 0LL;
+
+  // add to our sessions list if we have >0 taps
+  if(currentSession.taps > 0)
+  {
+    [sessions addObject:currentSession];    
+
+    if([sessions count] > MAX_SESSIONS)
+    {
+      int end = (int)[sessions count] - MAX_SESSIONS;
+      [sessions removeObjectsInRange:NSMakeRange(0, end)];
+    }
+  }
   
-  [currentSession reset];
+  for(KTSession *c in sessions)
+    NSLog(@"Taps: %@ for %@", [NSNumber numberWithLongLong:c.taps], c.date);
+    
+  currentSession = [[KTSession alloc] init];
+  
 }
 
 -(NSDate *)getLastReset

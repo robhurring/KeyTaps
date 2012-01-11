@@ -45,10 +45,4 @@
   taps++;
 }
 
--(void) reset
-{
-  taps = 0LL;
-  date = [[NSDate alloc] init];
-}
-
 @end
