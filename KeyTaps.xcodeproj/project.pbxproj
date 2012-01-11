@@ -19,9 +19,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B719C3B614BDECC30002A45D /* KeyTaps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KeyTaps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D416885B14BBB6E90008ACFC /* KeyTaps-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "KeyTaps-Info.plist"; sourceTree = "<group>"; };
 		D416885D14BBB7060008ACFC /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
-		D417D64514BBB91C007D221A /* KeyTaps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = KeyTaps.app; path = /Users/rob/Projects/KeyTaps/build/Release/KeyTaps.app; sourceTree = "<absolute>"; };
 		D4F84A3514BB8ADD00CDE1F0 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		D4F84A3814BB8ADD00CDE1F0 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		D4F84A3914BB8ADD00CDE1F0 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -49,19 +49,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D417D64814BBB92F007D221A /* Products */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		D4F84A2614BB8ADD00CDE1F0 = {
 			isa = PBXGroup;
 			children = (
 				D4F84A3B14BB8ADD00CDE1F0 /* KeyTaps */,
 				D4F84A3414BB8ADD00CDE1F0 /* Frameworks */,
-				D417D64814BBB92F007D221A /* Products */,
+				B719C3B614BDECC30002A45D /* KeyTaps.app */,
 			);
 			sourceTree = "<group>";
 		};
@@ -127,7 +120,7 @@
 			);
 			name = KeyTaps;
 			productName = KeyTaps;
-			productReference = D417D64514BBB91C007D221A /* KeyTaps.app */;
+			productReference = B719C3B614BDECC30002A45D /* KeyTaps.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */

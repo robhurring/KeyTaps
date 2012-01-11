@@ -11,8 +11,10 @@
 @implementation AppDelegate
 
 @synthesize keyTaps;
+@synthesize lifetimeTaps;
 @synthesize charCountLabel;
 @synthesize lastResetLabel;
+@synthesize lifetimeLabel;
 @synthesize appMenu;
 @synthesize statusItem;
 @synthesize monitor;
@@ -59,6 +61,7 @@
   monitor = [NSEvent addGlobalMonitorForEventsMatchingMask:NSKeyDownMask handler:^(NSEvent *event)
   {
     keyTaps++;
+    lifetimeTaps++;
     [self update];
   }];
 }
@@ -79,6 +82,7 @@
 -(void)reset
 {
   keyTaps = 0LL;
+  lifetimeTaps = 0LL;
   lastReset = [[NSDate alloc] init];
   
   [self save];
@@ -89,7 +93,10 @@
 {
   NSString *output = [numberFormatter stringFromNumber:[NSNumber numberWithLongLong:keyTaps]];
   [charCountLabel setTitleWithMnemonic:output];
-    
+  
+  output = [numberFormatter stringFromNumber:[NSNumber numberWithLongLong:lifetimeTaps]];
+  [lifetimeLabel setTitleWithMnemonic:output];
+  
   output = [dateFormatter stringFromDate:lastReset];
   [lastResetLabel setTitleWithMnemonic:[NSString stringWithFormat:@"Chars since %@", output]];
 }
@@ -103,9 +110,13 @@
   
   keyTaps = [[data objectForKey:@"taps"] longLongValue];
   lastReset = [data objectForKey:@"lastReset"];
-
+  lifetimeTaps = [[data objectForKey:@"lifetime"] longLongValue];
+  
   if(!keyTaps)
     keyTaps = 0LL;
+  
+  if(!lifetimeTaps)
+    lifetimeTaps = 0LL;
   
   if(!lastReset)
     lastReset = [[NSDate alloc] init];
@@ -117,6 +128,7 @@
 {
   NSMutableDictionary *data = [NSMutableDictionary dictionary];
   [data setObject:[NSNumber numberWithLongLong:keyTaps] forKey:@"taps"];
+  [data setObject:[NSNumber numberWithLongLong:lifetimeTaps] forKey:@"lifetime"];
   [data setObject:lastReset forKey:@"lastReset"];
    
   NSString *filePath = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"data.plist"];

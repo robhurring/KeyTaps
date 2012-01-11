@@ -14,6 +14,7 @@
 @property (retain) IBOutlet NSMenu *appMenu;
 @property (retain) IBOutlet NSTextField *charCountLabel;
 @property (retain) IBOutlet NSTextField *lastResetLabel;
+@property (retain) IBOutlet NSTextField *lifetimeLabel;
 
 @property (retain) NSNumberFormatter *numberFormatter;
 @property (retain) NSDateFormatter *dateFormatter;
@@ -23,7 +24,9 @@
 @property (retain) NSImage *menuImageAlt;
 
 @property (retain) NSDate *lastReset;
+
 @property (assign) long long keyTaps;
+@property (assign) long long lifetimeTaps;
 
 -(IBAction) reset:(id)sender;
 
