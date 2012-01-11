@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B719C3D214BE05490002A45D /* KeyTaps.m in Sources */ = {isa = PBXBuildFile; fileRef = B719C3D114BE05490002A45D /* KeyTaps.m */; };
 		B719C3D614BE05B40002A45D /* KTSession.m in Sources */ = {isa = PBXBuildFile; fileRef = B719C3D514BE05B40002A45D /* KTSession.m */; };
+		B719C3E214BE35740002A45D /* SessionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B719C3E114BE35740002A45D /* SessionView.xib */; };
 		D416885E14BBB7060008ACFC /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D416885D14BBB7060008ACFC /* icon.png */; };
 		D4F84A3614BB8ADD00CDE1F0 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4F84A3514BB8ADD00CDE1F0 /* Cocoa.framework */; };
 		D4F84A4014BB8ADD00CDE1F0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D4F84A3E14BB8ADD00CDE1F0 /* InfoPlist.strings */; };
@@ -26,6 +27,7 @@
 		B719C3D114BE05490002A45D /* KeyTaps.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KeyTaps.m; path = KeyTaps/KeyTaps.m; sourceTree = "<group>"; };
 		B719C3D414BE05B40002A45D /* KTSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTSession.h; sourceTree = "<group>"; };
 		B719C3D514BE05B40002A45D /* KTSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTSession.m; sourceTree = "<group>"; };
+		B719C3E114BE35740002A45D /* SessionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SessionView.xib; sourceTree = "<group>"; };
 		D416885B14BBB6E90008ACFC /* KeyTaps-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "KeyTaps-Info.plist"; sourceTree = "<group>"; };
 		D416885D14BBB7060008ACFC /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		D4F84A3514BB8ADD00CDE1F0 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -103,6 +105,7 @@
 				D4F84A4814BB8ADD00CDE1F0 /* AppDelegate.m */,
 				D4F84A4A14BB8ADD00CDE1F0 /* App.xib */,
 				D4F84A3C14BB8ADD00CDE1F0 /* Supporting Files */,
+				B719C3E114BE35740002A45D /* SessionView.xib */,
 			);
 			path = KeyTaps;
 			sourceTree = "<group>";
@@ -179,6 +182,7 @@
 				D4F84A8114BBA89B00CDE1F0 /* keytap.png in Resources */,
 				D4F84A8314BBAA1900CDE1F0 /* keytap-alt.png in Resources */,
 				D416885E14BBB7060008ACFC /* icon.png in Resources */,
+				B719C3E214BE35740002A45D /* SessionView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

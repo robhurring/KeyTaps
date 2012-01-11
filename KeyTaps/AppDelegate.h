@@ -21,6 +21,7 @@
 @property (retain) IBOutlet NSTextField *lastResetLabel;
 @property (retain) IBOutlet NSTextField *lifetimeLabel;
 @property (retain) IBOutlet NSPanel *resetPanel;
+@property (retain) IBOutlet NSView *sv;
 
 @property (retain) NSNumberFormatter *numberFormatter;
 @property (retain) NSDateFormatter *dateFormatter;
@@ -36,9 +37,12 @@
 -(IBAction) resetSession:(id)sender;
 -(IBAction) resetLifetime:(id)sender;
 
+
+
 -(void) startMonitoring;
 -(void) stopMonitoring;
 
+-(void) updateSessions;
 -(void) update;
 - (NSString *)applicationSupportDirectory;
 

@@ -27,6 +27,8 @@
 @synthesize numberFormatter;
 @synthesize dateFormatter;
 
+@synthesize sv;
+
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
   menuImage = [[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForImageResource:@"keytap.png"]];
@@ -48,9 +50,20 @@
 
   dataFile = [[self applicationSupportDirectory] stringByAppendingPathComponent:DATA_FILE];
   keyTaps = [[KeyTaps alloc] initWithDataFile:dataFile];
+
   [self update];
-  
+//  [self updateSessions];
   [self startMonitoring];
+}
+
+-(void)updateSessions
+{
+  [NSBundle loadNibNamed:@"SessionView" owner:self];
+  NSLog(@"%@", sv);
+
+  NSMenuItem *item = [[NSMenuItem alloc] init];
+  [item setView:sv];
+  [appMenu addItem:item];
 }
 
 -(void) applicationWillTerminate:(NSNotification *)notification
