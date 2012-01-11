@@ -31,7 +31,7 @@
 
 -  (id)init
 {
-  return [self initWithTaps:[NSNumber numberWithLongLong:500] andDate:[[NSDate alloc] init]];
+  return [self initWithTaps:[NSNumber numberWithLongLong:0] andDate:[[NSDate alloc] init]];
 }
 
 - (void)encodeWithCoder:(NSCoder *)encoder
@@ -40,10 +40,15 @@
   [encoder encodeObject:[NSNumber numberWithLongLong:taps] forKey:@"taps"];
 }
 
-
 -(void) increment
 {
   taps++;
+}
+
+-(void) reset
+{
+  taps = 0LL;
+  date = [[NSDate alloc] init];
 }
 
 @end

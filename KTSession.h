@@ -17,5 +17,6 @@
 - (id)initWithTaps:(NSNumber *)myTaps andDate:(NSDate *)myDate;
 -(void) encodeWithCoder:(NSCoder *)encoder;
 -(void) increment;
+-(void) reset;
 
 @end

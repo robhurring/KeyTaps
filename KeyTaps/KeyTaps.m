@@ -15,19 +15,25 @@
 
 @synthesize currentSession;
 @synthesize sessions;
-@synthesize lifetimeCache;
+@synthesize lifetime;
 
 -(id) initWithDataFile:(NSString *)path
 {
   if(self = [self init])
   {
-    NSData *data = [[NSData alloc] initWithContentsOfFile:path];
-    NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
-    
-    self.currentSession = [unarchiver decodeObjectForKey:@"currentSession"];
-    self.sessions = [unarchiver decodeObjectForKey:@"sessions"];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if([fileManager fileExistsAtPath:path])
+    {
+      NSData *data = [[NSData alloc] initWithContentsOfFile:path];
+      NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
       
-    [unarchiver finishDecoding];
+      currentSession = [unarchiver decodeObjectForKey:@"currentSession"];
+      sessions = [unarchiver decodeObjectForKey:@"sessions"];
+      lifetime = [[unarchiver decodeObjectForKey:@"lifetime"] longLongValue];      
+      [unarchiver finishDecoding];
+    }
+    
+    NSLog(@"Current: %@", [NSNumber numberWithLongLong:currentSession.taps]);
   }
   
   return self;
@@ -37,31 +43,54 @@
 {
   if(self = [super init])
   {
-    lifetimeCache = 0LL;
+    lifetime = 0LL;
     currentSession = [[KTSession alloc] init];
     sessions = [NSMutableArray array];
-    [sessions addObject:[[KTSession alloc] initWithTaps:[NSNumber numberWithLongLong:10] andDate:[[NSDate alloc] init]]];
   }
   
   return self;
 }
 
--(void) save:(NSString *)path
+-(void) saveToFile:(NSString *)dataFile
 {
   NSMutableData *data = [[NSMutableData alloc] init];
   NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];          
-
+  
   [archiver encodeObject:currentSession forKey:@"currentSession"];
   [archiver encodeObject:sessions forKey:@"sessions"];
+  [archiver encodeObject:[NSNumber numberWithLongLong:lifetime] forKey:@"lifetime"];
   [archiver finishEncoding];
   
-  [data writeToFile:path atomically:YES];
+  [data writeToFile:dataFile atomically:YES];
 }
 
 -(void) increment
 {
-  lifetimeCache++;
+  lifetime++;
   [currentSession increment];
+}
+
+-(void) reset:(BOOL)all
+{
+  if(all)
+    lifetime = 0LL;
+  
+  [currentSession reset];
+}
+
+-(NSDate *)getLastReset
+{
+  return currentSession.date;
+}
+
+-(NSNumber *)getTaps
+{
+  return [NSNumber numberWithLongLong:currentSession.taps];
+}
+
+-(NSNumber *)getLifetime
+{
+  return [NSNumber numberWithLongLong:lifetime];
 }
 
 @end

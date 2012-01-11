@@ -16,10 +16,15 @@
 
 @property (retain) NSMutableArray *sessions;
 @property (retain) KTSession *currentSession;
-@property (assign) long long lifetimeCache;
+@property (assign) long long lifetime;
 
 -(id) initWithDataFile:(NSString *)path;
--(void) save:(NSString *)path;
+-(void) saveToFile:(NSString *)dataFile;
 -(void) increment;
+-(void) reset:(BOOL)all;
+
+-(NSNumber *)getTaps;
+-(NSDate *)getLastReset;
+-(NSNumber *)getLifetime;
 
 @end

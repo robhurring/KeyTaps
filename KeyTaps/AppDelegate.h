@@ -29,12 +29,8 @@
 @property (retain) NSImage *menuImage;
 @property (retain) NSImage *menuImageAlt;
 
-@property (retain) NSDate *lastReset;
-
-@property (assign) long long keyTaps;
-@property (assign) long long lifetimeTaps;
-
-@property (retain) KeyTaps *kt;
+@property (retain) KeyTaps *keyTaps;
+@property (retain) NSString *dataFile;
 
 -(IBAction) showResetPanel:(id)sender;
 -(IBAction) resetSession:(id)sender;
@@ -44,9 +40,6 @@
 -(void) stopMonitoring;
 
 -(void) update;
--(void) reset:(BOOL)lifetime;
--(void) save;
--(void) load;
 - (NSString *)applicationSupportDirectory;
 
 @end

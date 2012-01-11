@@ -13,7 +13,8 @@
 @implementation AppDelegate
 
 @synthesize keyTaps;
-@synthesize lifetimeTaps;
+@synthesize dataFile;
+
 @synthesize charCountLabel;
 @synthesize lastResetLabel;
 @synthesize lifetimeLabel;
@@ -23,11 +24,8 @@
 @synthesize monitor;
 @synthesize menuImage;
 @synthesize menuImageAlt;
-@synthesize lastReset;
 @synthesize numberFormatter;
 @synthesize dateFormatter;
-
-@synthesize kt;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
@@ -48,14 +46,17 @@
   dateFormatter = [[NSDateFormatter alloc] init];
   [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
 
-  [self load];
+  dataFile = [[self applicationSupportDirectory] stringByAppendingPathComponent:DATA_FILE];
+  keyTaps = [[KeyTaps alloc] initWithDataFile:dataFile];
+  [self update];
+  
   [self startMonitoring];
 }
 
 -(void) applicationWillTerminate:(NSNotification *)notification
 {
   [self stopMonitoring];
-  [self save];
+  [keyTaps saveToFile:dataFile];
   [[NSStatusBar systemStatusBar] removeStatusItem:statusItem];
 }
 
@@ -65,8 +66,7 @@
 {
   monitor = [NSEvent addGlobalMonitorForEventsMatchingMask:NSKeyDownMask handler:^(NSEvent *event)
   {
-    keyTaps++;
-    lifetimeTaps++;
+    [keyTaps increment];
     [self update];
   }];
 }
@@ -86,81 +86,31 @@
 
 -(IBAction) resetSession:(id)sender
 {
-  [self reset:NO];
+  [keyTaps reset:NO];
   [resetPanel setIsVisible:NO];
+  [self update];
 }
 
 -(IBAction) resetLifetime:(id)sender
 {
-  [self reset:YES];
+  [keyTaps reset:YES];
   [resetPanel setIsVisible:NO];
-}
-
--(void)reset:(BOOL)lifetime
-{
-  keyTaps = 0LL;
-
-  if(lifetime)
-    lifetimeTaps = 0LL;
-  
-  lastReset = [[NSDate alloc] init];
-  
-  [self save];
   [self update];
 }
 
 -(void) update
 {
-  NSString *output = [numberFormatter stringFromNumber:[NSNumber numberWithLongLong:keyTaps]];
+  NSString *output = [numberFormatter stringFromNumber:[keyTaps getTaps]];
   [charCountLabel setTitleWithMnemonic:output];
   
-  output = [numberFormatter stringFromNumber:[NSNumber numberWithLongLong:lifetimeTaps]];
+  output = [numberFormatter stringFromNumber:[keyTaps getLifetime]];
   [lifetimeLabel setTitleWithMnemonic:output];
   
-  output = [dateFormatter stringFromDate:lastReset];
+  output = [dateFormatter stringFromDate:[keyTaps getLastReset]];
   [lastResetLabel setTitleWithMnemonic:[NSString stringWithFormat:@"Chars since %@", output]];
 }
 
 # pragma mark Persistence
-
--(void) load
-{
-  NSString *filePath = [[self applicationSupportDirectory] stringByAppendingPathComponent:DATA_FILE];
-  NSDictionary *data = [NSDictionary dictionaryWithContentsOfFile:filePath];
-  
-  NSString *ktPath = [[self applicationSupportDirectory] stringByAppendingPathComponent:@"KeyTaps2.plist"];
-  kt = [[KeyTaps alloc] initWithDataFile:ktPath];
-  
-  keyTaps = [[data objectForKey:@"taps"] longLongValue];
-  lastReset = [data objectForKey:@"lastReset"];
-  lifetimeTaps = [[data objectForKey:@"lifetime"] longLongValue];
-  
-  if(!keyTaps)
-    keyTaps = 0LL;
-  
-  if(!lifetimeTaps)
-    lifetimeTaps = keyTaps;
-  
-  if(!lastReset)
-    lastReset = [[NSDate alloc] init];
-      
-  [self update];
-}
-
--(void) save
-{
-  NSString *filePath = [[self applicationSupportDirectory] stringByAppendingPathComponent:DATA_FILE];
-
-  NSString *ktPath = [[self applicationSupportDirectory] stringByAppendingPathComponent:@"KeyTaps2.plist"];
-  [kt save:ktPath];
-
-  NSMutableDictionary *data = [NSMutableDictionary dictionary];
-  [data setObject:[NSNumber numberWithLongLong:keyTaps] forKey:@"taps"];
-  [data setObject:[NSNumber numberWithLongLong:lifetimeTaps] forKey:@"lifetime"];
-  [data setObject:lastReset forKey:@"lastReset"];
-  
-  [data writeToFile:filePath atomically: YES];
-}
 
 - (NSString *)applicationSupportDirectory
 {
