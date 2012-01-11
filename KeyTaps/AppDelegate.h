@@ -7,8 +7,11 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "KeyTaps.h"
 
 #define DATA_FILE @"KeyTaps.plist"
+
+@class KeyTaps;
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
@@ -30,6 +33,8 @@
 
 @property (assign) long long keyTaps;
 @property (assign) long long lifetimeTaps;
+
+@property (retain) KeyTaps *kt;
 
 -(IBAction) showResetPanel:(id)sender;
 -(IBAction) resetSession:(id)sender;

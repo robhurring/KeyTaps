@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "KeyTaps.h"
+#import "KTSession.h"
 
 @implementation AppDelegate
 
@@ -24,6 +26,8 @@
 @synthesize lastReset;
 @synthesize numberFormatter;
 @synthesize dateFormatter;
+
+@synthesize kt;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
@@ -46,8 +50,6 @@
 
   [self load];
   [self startMonitoring];
-  
-  NSString *tmp = [self applicationSupportDirectory];
 }
 
 -(void) applicationWillTerminate:(NSNotification *)notification
@@ -126,6 +128,9 @@
   NSString *filePath = [[self applicationSupportDirectory] stringByAppendingPathComponent:DATA_FILE];
   NSDictionary *data = [NSDictionary dictionaryWithContentsOfFile:filePath];
   
+  NSString *ktPath = [[self applicationSupportDirectory] stringByAppendingPathComponent:@"KeyTaps2.plist"];
+  kt = [[KeyTaps alloc] initWithDataFile:ktPath];
+  
   keyTaps = [[data objectForKey:@"taps"] longLongValue];
   lastReset = [data objectForKey:@"lastReset"];
   lifetimeTaps = [[data objectForKey:@"lifetime"] longLongValue];
@@ -145,6 +150,9 @@
 -(void) save
 {
   NSString *filePath = [[self applicationSupportDirectory] stringByAppendingPathComponent:DATA_FILE];
+
+  NSString *ktPath = [[self applicationSupportDirectory] stringByAppendingPathComponent:@"KeyTaps2.plist"];
+  [kt save:ktPath];
 
   NSMutableDictionary *data = [NSMutableDictionary dictionary];
   [data setObject:[NSNumber numberWithLongLong:keyTaps] forKey:@"taps"];
