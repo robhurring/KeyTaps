@@ -10,6 +10,7 @@
 #import "KTApp.h"
 #import "KTSession.h"
 #import "KTSessionCell.h"
+#import "KTSessionPanelController.h"
 
 @interface AppDelegate (PrivateMethods)
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView;
@@ -21,6 +22,7 @@
 @implementation AppDelegate
 
 @synthesize keyTaps;
+@synthesize sessionPanelController;
 @synthesize dataFile;
 @synthesize numberFormatter, dateFormatter;
 
@@ -57,6 +59,9 @@
 
   dataFile = [[self applicationSupportDirectory] stringByAppendingPathComponent:DATA_FILE];
   keyTaps = [[KTApp alloc] initWithDataFile:dataFile];
+
+  sessionPanelController = [[KTSessionPanelController alloc] initWithDelegate:self];
+  [keyTaps addObserver:self forKeyPath:@"currentTaps" options:NSKeyValueChangeReplacement context:nil];
 
   [self update];
   [self startMonitoring];
@@ -96,7 +101,6 @@
   monitor = [NSEvent addGlobalMonitorForEventsMatchingMask:NSKeyDownMask handler:^(NSEvent *event)
   {
     [keyTaps increment];
-    [self update];
   }];
 }
 
@@ -104,6 +108,14 @@
 {
   if(monitor)
     [NSEvent removeMonitor:monitor];
+}
+
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+  if ([keyPath isEqualToString:@"currentTaps"])
+  {
+    [self update];
+  }
 }
 
 # pragma mark Table view data source
@@ -135,12 +147,17 @@
 
 # pragma mark Actions
 
--(IBAction) showResetPanel:(id)sender
+- (IBAction)showSessionPanel:(id)sender
+{
+  [sessionPanelController showPanel];
+}
+
+- (IBAction)showResetPanel:(id)sender
 {
   [resetPanel setIsVisible:YES];
 }
 
--(IBAction) resetSession:(id)sender
+- (IBAction)resetSession:(id)sender
 {
   [keyTaps reset:NO];
   [resetPanel setIsVisible:NO];
@@ -148,7 +165,7 @@
   [self update];
 }
 
--(IBAction) resetLifetime:(id)sender
+- (IBAction)resetLifetime:(id)sender
 {
   [keyTaps reset:YES];
   [resetPanel setIsVisible:NO];

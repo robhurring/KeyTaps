@@ -95,6 +95,14 @@
 						<reference key="NSOnImage" ref="937693062"/>
 						<reference key="NSMixedImage" ref="668049692"/>
 					</object>
+					<object class="NSMenuItem" id="204058908">
+						<reference key="NSMenu" ref="164432187"/>
+						<string key="NSTitle">Current Session</string>
+						<string key="NSKeyEquiv"/>
+						<int key="NSMnemonicLoc">2147483647</int>
+						<reference key="NSOnImage" ref="937693062"/>
+						<reference key="NSMixedImage" ref="668049692"/>
+					</object>
 					<object class="NSMenuItem" id="771252228">
 						<reference key="NSMenu" ref="164432187"/>
 						<string key="NSTitle">Reset Stats</string>
@@ -593,6 +601,14 @@
 					<int key="connectionID">686</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">showSessionPanel:</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="204058908"/>
+					</object>
+					<int key="connectionID">705</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">view</string>
 						<reference key="source" ref="1022759844"/>
@@ -736,13 +752,9 @@
 							<reference ref="27883651"/>
 							<reference ref="584987783"/>
 							<reference ref="887967368"/>
+							<reference ref="204058908"/>
 						</array>
 						<reference key="parent" ref="0"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">557</int>
-						<reference key="object" ref="1022759844"/>
-						<reference key="parent" ref="164432187"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">559</int>
@@ -952,6 +964,16 @@
 						<reference key="object" ref="448278067"/>
 						<reference key="parent" ref="65489127"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">557</int>
+						<reference key="object" ref="1022759844"/>
+						<reference key="parent" ref="164432187"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">703</int>
+						<reference key="object" ref="204058908"/>
+						<reference key="parent" ref="164432187"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -965,6 +987,7 @@
 				<string key="559.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="563.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="575.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<dictionary class="NSMutableDictionary" key="577.IBAttributePlaceholdersKey"/>
 				<string key="577.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="578.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="580.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -1002,12 +1025,13 @@
 				<string key="680.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="683.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="684.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="703.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">687</int>
+			<int key="maxID">705</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1018,6 +1042,7 @@
 						<string key="resetLifetime:">id</string>
 						<string key="resetSession:">id</string>
 						<string key="showResetPanel:">id</string>
+						<string key="showSessionPanel:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
 						<object class="IBActionInfo" key="resetLifetime:">
@@ -1032,6 +1057,10 @@
 							<string key="name">showResetPanel:</string>
 							<string key="candidateClassName">id</string>
 						</object>
+						<object class="IBActionInfo" key="showSessionPanel:">
+							<string key="name">showSessionPanel:</string>
+							<string key="candidateClassName">id</string>
+						</object>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="appMenu">NSMenu</string>
@@ -1039,7 +1068,6 @@
 						<string key="lastResetLabel">NSTextField</string>
 						<string key="lifetimeLabel">NSTextField</string>
 						<string key="resetPanel">NSPanel</string>
-						<string key="sessionScrollView">NSScrollView</string>
 						<string key="sessionsTableView">NSTableView</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
@@ -1062,10 +1090,6 @@
 						<object class="IBToOneOutletInfo" key="resetPanel">
 							<string key="name">resetPanel</string>
 							<string key="candidateClassName">NSPanel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="sessionScrollView">
-							<string key="name">sessionScrollView</string>
-							<string key="candidateClassName">NSScrollView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="sessionsTableView">
 							<string key="name">sessionsTableView</string>

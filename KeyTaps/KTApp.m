@@ -62,12 +62,16 @@
 
 -(void) increment
 {
+  [self willChangeValueForKey:@"currentTaps"];
   lifetime++;
   [currentSession increment];
+  [self didChangeValueForKey:@"currentTaps"];
 }
 
 -(void) reset:(BOOL)all
 {
+  [self willChangeValueForKey:@"currentTaps"];
+
   // delete all sessions & the lifetime count
   if(all)
   {
@@ -120,6 +124,8 @@
   }
       
   currentSession = [[KTSession alloc] init];
+  
+  [self didChangeValueForKey:@"currentTaps"];
 }
 
 -(NSDate *)getLastReset

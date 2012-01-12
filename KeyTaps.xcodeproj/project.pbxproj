@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		B719C3D214BE05490002A45D /* KTApp.m in Sources */ = {isa = PBXBuildFile; fileRef = B719C3D114BE05490002A45D /* KTApp.m */; };
 		B719C3D614BE05B40002A45D /* KTSession.m in Sources */ = {isa = PBXBuildFile; fileRef = B719C3D514BE05B40002A45D /* KTSession.m */; };
+		B7B699CA14BF7AE30069497D /* KTSessionPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7B699C814BF7AE30069497D /* KTSessionPanelController.m */; };
+		B7B699CD14BF7B690069497D /* SessionPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7B699CC14BF7B690069497D /* SessionPanel.xib */; };
 		B7C9EB7B14BF59DB003DB399 /* KTSessionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B7C9EB7A14BF59DB003DB399 /* KTSessionCell.m */; };
 		D416885E14BBB7060008ACFC /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D416885D14BBB7060008ACFC /* icon.png */; };
 		D4F84A3614BB8ADD00CDE1F0 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4F84A3514BB8ADD00CDE1F0 /* Cocoa.framework */; };
@@ -23,10 +25,13 @@
 
 /* Begin PBXFileReference section */
 		B719C3B614BDECC30002A45D /* KeyTaps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KeyTaps.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		B719C3D014BE05490002A45D /* KTApp.h */ = {isa = PBXFileReference; fileEncoding = 4; name = KTApp.h; path = KeyTaps/KTApp.h; sourceTree = "<group>"; };
+		B719C3D014BE05490002A45D /* KTApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KTApp.h; path = KeyTaps/KTApp.h; sourceTree = "<group>"; };
 		B719C3D114BE05490002A45D /* KTApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KTApp.m; path = KeyTaps/KTApp.m; sourceTree = "<group>"; };
 		B719C3D414BE05B40002A45D /* KTSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTSession.h; sourceTree = "<group>"; };
 		B719C3D514BE05B40002A45D /* KTSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTSession.m; sourceTree = "<group>"; };
+		B7B699C714BF7AE30069497D /* KTSessionPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTSessionPanelController.h; sourceTree = "<group>"; };
+		B7B699C814BF7AE30069497D /* KTSessionPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTSessionPanelController.m; sourceTree = "<group>"; };
+		B7B699CC14BF7B690069497D /* SessionPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SessionPanel.xib; sourceTree = "<group>"; };
 		B7C9EB7914BF59DB003DB399 /* KTSessionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTSessionCell.h; sourceTree = "<group>"; };
 		B7C9EB7A14BF59DB003DB399 /* KTSessionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTSessionCell.m; sourceTree = "<group>"; };
 		D416885B14BBB6E90008ACFC /* KeyTaps-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "KeyTaps-Info.plist"; sourceTree = "<group>"; };
@@ -70,6 +75,15 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
+		B7B699C514BF7AA80069497D /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				B7B699C714BF7AE30069497D /* KTSessionPanelController.h */,
+				B7B699C814BF7AE30069497D /* KTSessionPanelController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
 		B7C9EB7C14BF5BCA003DB399 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -110,11 +124,13 @@
 		D4F84A3B14BB8ADD00CDE1F0 /* KeyTaps */ = {
 			isa = PBXGroup;
 			children = (
+				B7B699C514BF7AA80069497D /* Controllers */,
 				B7C9EB7C14BF5BCA003DB399 /* Views */,
 				B719C3D314BE058D0002A45D /* Models */,
 				D4F84A4714BB8ADD00CDE1F0 /* AppDelegate.h */,
 				D4F84A4814BB8ADD00CDE1F0 /* AppDelegate.m */,
 				D4F84A4A14BB8ADD00CDE1F0 /* App.xib */,
+				B7B699CC14BF7B690069497D /* SessionPanel.xib */,
 				D4F84A3C14BB8ADD00CDE1F0 /* Supporting Files */,
 			);
 			path = KeyTaps;
@@ -192,6 +208,7 @@
 				D4F84A8114BBA89B00CDE1F0 /* keytap.png in Resources */,
 				D4F84A8314BBAA1900CDE1F0 /* keytap-alt.png in Resources */,
 				D416885E14BBB7060008ACFC /* icon.png in Resources */,
+				B7B699CD14BF7B690069497D /* SessionPanel.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,6 +224,7 @@
 				B719C3D214BE05490002A45D /* KTApp.m in Sources */,
 				B719C3D614BE05B40002A45D /* KTSession.m in Sources */,
 				B7C9EB7B14BF59DB003DB399 /* KTSessionCell.m in Sources */,
+				B7B699CA14BF7AE30069497D /* KTSessionPanelController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
