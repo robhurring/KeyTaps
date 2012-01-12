@@ -31,7 +31,7 @@
 
 -  (id)init
 {
-  return [self initWithTaps:[NSNumber numberWithLongLong:0] andDate:[[NSDate alloc] init]];
+  return [self initWithTaps:[NSNumber numberWithLongLong:0] andDate:[NSDate date]];
 }
 
 - (void)encodeWithCoder:(NSCoder *)encoder

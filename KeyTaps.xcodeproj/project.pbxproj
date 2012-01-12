@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B719C3D214BE05490002A45D /* KeyTaps.m in Sources */ = {isa = PBXBuildFile; fileRef = B719C3D114BE05490002A45D /* KeyTaps.m */; };
+		B719C3D214BE05490002A45D /* KTApp.m in Sources */ = {isa = PBXBuildFile; fileRef = B719C3D114BE05490002A45D /* KTApp.m */; };
 		B719C3D614BE05B40002A45D /* KTSession.m in Sources */ = {isa = PBXBuildFile; fileRef = B719C3D514BE05B40002A45D /* KTSession.m */; };
+		B7C9EB7B14BF59DB003DB399 /* KTSessionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B7C9EB7A14BF59DB003DB399 /* KTSessionCell.m */; };
 		D416885E14BBB7060008ACFC /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D416885D14BBB7060008ACFC /* icon.png */; };
 		D4F84A3614BB8ADD00CDE1F0 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4F84A3514BB8ADD00CDE1F0 /* Cocoa.framework */; };
 		D4F84A4014BB8ADD00CDE1F0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D4F84A3E14BB8ADD00CDE1F0 /* InfoPlist.strings */; };
@@ -22,10 +23,12 @@
 
 /* Begin PBXFileReference section */
 		B719C3B614BDECC30002A45D /* KeyTaps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KeyTaps.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		B719C3D014BE05490002A45D /* KeyTaps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KeyTaps.h; path = KeyTaps/KeyTaps.h; sourceTree = "<group>"; };
-		B719C3D114BE05490002A45D /* KeyTaps.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KeyTaps.m; path = KeyTaps/KeyTaps.m; sourceTree = "<group>"; };
+		B719C3D014BE05490002A45D /* KTApp.h */ = {isa = PBXFileReference; fileEncoding = 4; name = KTApp.h; path = KeyTaps/KTApp.h; sourceTree = "<group>"; };
+		B719C3D114BE05490002A45D /* KTApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KTApp.m; path = KeyTaps/KTApp.m; sourceTree = "<group>"; };
 		B719C3D414BE05B40002A45D /* KTSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTSession.h; sourceTree = "<group>"; };
 		B719C3D514BE05B40002A45D /* KTSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTSession.m; sourceTree = "<group>"; };
+		B7C9EB7914BF59DB003DB399 /* KTSessionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTSessionCell.h; sourceTree = "<group>"; };
+		B7C9EB7A14BF59DB003DB399 /* KTSessionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTSessionCell.m; sourceTree = "<group>"; };
 		D416885B14BBB6E90008ACFC /* KeyTaps-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "KeyTaps-Info.plist"; sourceTree = "<group>"; };
 		D416885D14BBB7060008ACFC /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		D4F84A3514BB8ADD00CDE1F0 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -58,13 +61,22 @@
 		B719C3D314BE058D0002A45D /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				B719C3D014BE05490002A45D /* KeyTaps.h */,
-				B719C3D114BE05490002A45D /* KeyTaps.m */,
+				B719C3D014BE05490002A45D /* KTApp.h */,
+				B719C3D114BE05490002A45D /* KTApp.m */,
 				B719C3D414BE05B40002A45D /* KTSession.h */,
 				B719C3D514BE05B40002A45D /* KTSession.m */,
 			);
 			name = Models;
 			path = ..;
+			sourceTree = "<group>";
+		};
+		B7C9EB7C14BF5BCA003DB399 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B7C9EB7914BF59DB003DB399 /* KTSessionCell.h */,
+				B7C9EB7A14BF59DB003DB399 /* KTSessionCell.m */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 		D4F84A2614BB8ADD00CDE1F0 = {
@@ -98,6 +110,7 @@
 		D4F84A3B14BB8ADD00CDE1F0 /* KeyTaps */ = {
 			isa = PBXGroup;
 			children = (
+				B7C9EB7C14BF5BCA003DB399 /* Views */,
 				B719C3D314BE058D0002A45D /* Models */,
 				D4F84A4714BB8ADD00CDE1F0 /* AppDelegate.h */,
 				D4F84A4814BB8ADD00CDE1F0 /* AppDelegate.m */,
@@ -191,8 +204,9 @@
 			files = (
 				D4F84A4214BB8ADD00CDE1F0 /* main.m in Sources */,
 				D4F84A4914BB8ADD00CDE1F0 /* AppDelegate.m in Sources */,
-				B719C3D214BE05490002A45D /* KeyTaps.m in Sources */,
+				B719C3D214BE05490002A45D /* KTApp.m in Sources */,
 				B719C3D614BE05B40002A45D /* KTSession.m in Sources */,
+				B7C9EB7B14BF59DB003DB399 /* KTSessionCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

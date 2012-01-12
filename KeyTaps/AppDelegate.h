@@ -7,13 +7,14 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "KeyTaps.h"
+#import "KTApp.h"
 
 #define DATA_FILE @"KeyTaps.plist"
+#define SESSION_CELL_HEIGHT CCFloat(33.0)
 
-@class KeyTaps;
+@class KTApp;
 
-@interface AppDelegate : NSObject <NSApplicationDelegate>
+@interface AppDelegate : NSObject <NSApplicationDelegate, NSTableViewDataSource, NSTableViewDelegate>
 
 @property (retain) id monitor;
 @property (retain) IBOutlet NSMenu *appMenu;
@@ -21,6 +22,7 @@
 @property (retain) IBOutlet NSTextField *lastResetLabel;
 @property (retain) IBOutlet NSTextField *lifetimeLabel;
 @property (retain) IBOutlet NSPanel *resetPanel;
+@property (retain) IBOutlet NSTableView *sessionsTableView;
 
 @property (retain) NSNumberFormatter *numberFormatter;
 @property (retain) NSDateFormatter *dateFormatter;
@@ -29,7 +31,7 @@
 @property (retain) NSImage *menuImage;
 @property (retain) NSImage *menuImageAlt;
 
-@property (retain) KeyTaps *keyTaps;
+@property (retain) KTApp *keyTaps;
 @property (retain) NSString *dataFile;
 
 -(IBAction) showResetPanel:(id)sender;
@@ -39,8 +41,6 @@
 -(void) startMonitoring;
 -(void) stopMonitoring;
 
--(void) updateSessions;
 -(void) update;
-- (NSString *)applicationSupportDirectory;
 
 @end

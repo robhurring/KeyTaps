@@ -6,12 +6,10 @@
 //  Copyright (c) 2012 Zerobased, LLC. All rights reserved.
 //
 
-#import "KeyTaps.h"
+#import "KTApp.h"
 #import "KTSession.h"
 
-#define MAX_SESSIONS 3
-
-@implementation KeyTaps
+@implementation KTApp
 
 @synthesize currentSession;
 @synthesize sessions;
@@ -32,8 +30,6 @@
       lifetime = [[unarchiver decodeObjectForKey:@"lifetime"] longLongValue];      
       [unarchiver finishDecoding];
     }
-    
-    NSLog(@"Current: %@", [NSNumber numberWithLongLong:currentSession.taps]);
   }
   
   return self;
@@ -72,26 +68,58 @@
 
 -(void) reset:(BOOL)all
 {
+  // delete all sessions & the lifetime count
   if(all)
+  {
     lifetime = 0LL;
+    sessions = [NSMutableArray array];
+    currentSession = [[KTSession alloc] init];
+    return;
+  }
 
   // add to our sessions list if we have >0 taps
   if(currentSession.taps > 0)
   {
-    [sessions addObject:currentSession];    
+    // get my "dateOnly"
+    unsigned int flags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit;
+    NSCalendar* calendar = [NSCalendar currentCalendar];
+    NSDateComponents* components = [calendar components:flags fromDate:currentSession.date];
+    NSDate* currentDateOnly = [calendar dateFromComponents:components];
+    
+    // check all existing sessions and compare dates
+    NSDate *compareDateOnly;
+    KTSession *matched;
+    for(KTSession *s in sessions)
+    {
+      if(s != currentSession)
+      {
+        components = [calendar components:flags fromDate:s.date];
+        compareDateOnly = [calendar dateFromComponents:components];
 
+        if(currentDateOnly == compareDateOnly)
+        {
+          matched = s;
+          break;
+        }
+      }
+    }
+
+    // merge current session with existing taps
+    if(matched)
+    {
+      matched.taps += currentSession.taps;
+    }else{
+      [sessions addObject:currentSession];      
+    }
+    
     if([sessions count] > MAX_SESSIONS)
     {
       int end = (int)[sessions count] - MAX_SESSIONS;
       [sessions removeObjectsInRange:NSMakeRange(0, end)];
     }
   }
-  
-  for(KTSession *c in sessions)
-    NSLog(@"Taps: %@ for %@", [NSNumber numberWithLongLong:c.taps], c.date);
-    
+      
   currentSession = [[KTSession alloc] init];
-  
 }
 
 -(NSDate *)getLastReset

@@ -7,25 +7,34 @@
 //
 
 #import "AppDelegate.h"
-#import "KeyTaps.h"
+#import "KTApp.h"
 #import "KTSession.h"
+#import "KTSessionCell.h"
+
+@interface AppDelegate (PrivateMethods)
+- (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView;
+- (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row;
+- (BOOL)selectionShouldChangeInTableView:(NSTableView *)aTableView;
+- (NSString *)applicationSupportDirectory;
+@end
 
 @implementation AppDelegate
 
 @synthesize keyTaps;
 @synthesize dataFile;
+@synthesize numberFormatter, dateFormatter;
+
+@synthesize appMenu, statusItem;
+@synthesize menuImage, menuImageAlt;
+@synthesize monitor;
 
 @synthesize charCountLabel;
 @synthesize lastResetLabel;
+@synthesize sessionsTableView;
 @synthesize lifetimeLabel;
 @synthesize resetPanel;
-@synthesize appMenu;
-@synthesize statusItem;
-@synthesize monitor;
-@synthesize menuImage;
-@synthesize menuImageAlt;
-@synthesize numberFormatter;
-@synthesize dateFormatter;
+
+# pragma mark App Lifecycle
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
@@ -47,7 +56,7 @@
   [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
 
   dataFile = [[self applicationSupportDirectory] stringByAppendingPathComponent:DATA_FILE];
-  keyTaps = [[KeyTaps alloc] initWithDataFile:dataFile];
+  keyTaps = [[KTApp alloc] initWithDataFile:dataFile];
 
   [self update];
   [self startMonitoring];
@@ -58,6 +67,26 @@
   [self stopMonitoring];
   [keyTaps saveToFile:dataFile];
   [[NSStatusBar systemStatusBar] removeStatusItem:statusItem];
+}
+
+- (NSString *)applicationSupportDirectory
+{
+  NSString *executableName = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleExecutable"];
+  NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
+  NSString *basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : NSTemporaryDirectory();
+  NSString *path = [basePath stringByAppendingPathComponent:executableName];
+  
+  // create directory if it doesn't exist
+  NSFileManager *fileManager = [NSFileManager defaultManager];
+  
+  NSError *error;
+  if(![fileManager fileExistsAtPath:path isDirectory:NULL])
+    [fileManager createDirectoryAtPath:path withIntermediateDirectories:NO attributes:nil error:&error];
+  
+  if(error)
+    NSLog(@"Couldn't create application support directory!");
+  
+  return path;
 }
 
 # pragma mark Event Monitoring
@@ -77,6 +106,33 @@
     [NSEvent removeMonitor:monitor];
 }
 
+# pragma mark Table view data source
+
+- (BOOL)selectionShouldChangeInTableView:(NSTableView *)aTableView
+{
+  return NO;
+}
+
+- (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView
+{
+  return [keyTaps.sessions count];
+}
+
+- (NSTableCellView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
+{
+  KTSession *session = [keyTaps.sessions objectAtIndex:row];
+  KTSessionCell *cell = [tableView makeViewWithIdentifier:@"SessionCell" owner:self];
+    
+  NSString *output = [numberFormatter stringFromNumber:[NSNumber numberWithLongLong:session.taps]];
+  [cell.tapsLabel setTitleWithMnemonic:output];
+  
+  output = [dateFormatter stringFromDate:session.date];
+  [cell.dateLabel setTitleWithMnemonic:[NSString stringWithFormat:@"Chars on %@", output]];
+
+  return cell;
+  
+}
+
 # pragma mark Actions
 
 -(IBAction) showResetPanel:(id)sender
@@ -88,6 +144,7 @@
 {
   [keyTaps reset:NO];
   [resetPanel setIsVisible:NO];
+  [sessionsTableView reloadData];
   [self update];
 }
 
@@ -95,8 +152,11 @@
 {
   [keyTaps reset:YES];
   [resetPanel setIsVisible:NO];
+  [sessionsTableView reloadData];
   [self update];
 }
+
+# pragma mark UI
 
 -(void) update
 {
@@ -108,28 +168,6 @@
   
   output = [dateFormatter stringFromDate:[keyTaps getLastReset]];
   [lastResetLabel setTitleWithMnemonic:[NSString stringWithFormat:@"Chars since %@", output]];
-}
-
-# pragma mark Persistence
-
-- (NSString *)applicationSupportDirectory
-{
-  NSString *executableName = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleExecutable"];
-  NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
-  NSString *basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : NSTemporaryDirectory();
-  NSString *path = [basePath stringByAppendingPathComponent:executableName];
-
-  // create directory if it doesn't exist
-  NSFileManager *fileManager = [NSFileManager defaultManager];
-
-  NSError *error;
-  if(![fileManager fileExistsAtPath:path isDirectory:NULL])
-    [fileManager createDirectoryAtPath:path withIntermediateDirectories:NO attributes:nil error:&error];
-
-  if(error)
-    NSLog(@"Couldn't create application support directory!");
-  
-  return path;
 }
 
 @end

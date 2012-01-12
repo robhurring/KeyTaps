@@ -8,11 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-#define DATA_FILE @"KeyTaps.plist"
+#define MAX_SESSIONS 5
 
 @class KTSession;
 
-@interface KeyTaps : NSObject
+@interface KTApp : NSObject
 
 @property (retain) NSMutableArray *sessions;
 @property (retain) KTSession *currentSession;
