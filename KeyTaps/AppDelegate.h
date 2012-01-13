@@ -12,7 +12,7 @@
 #define DATA_FILE @"KeyTaps.plist"
 #define SESSION_CELL_HEIGHT CCFloat(33.0)
 
-@class KTApp, KTSessionPanelController;
+@class KTApp, KTSessionPanelController, KTResetPanelController;
 
 @interface AppDelegate : NSObject <NSApplicationDelegate, NSTableViewDataSource, NSTableViewDelegate>
 
@@ -21,7 +21,6 @@
 @property (retain) IBOutlet NSTextField *charCountLabel;
 @property (retain) IBOutlet NSTextField *lastResetLabel;
 @property (retain) IBOutlet NSTextField *lifetimeLabel;
-@property (retain) IBOutlet NSPanel *resetPanel;
 @property (retain) IBOutlet NSTableView *sessionsTableView;
 
 @property (retain) NSNumberFormatter *numberFormatter;
@@ -32,17 +31,16 @@
 @property (retain) NSImage *menuImageAlt;
 
 @property (retain) KTApp *keyTaps;
-@property (retain) KTSessionPanelController *sessionPanelController;
 @property (retain) NSString *dataFile;
+@property (retain) KTSessionPanelController *sessionPanelController;
+@property (retain) KTResetPanelController *resetPanelController;
 
 - (IBAction)showResetPanel:(id)sender;
-- (IBAction)resetSession:(id)sender;
-- (IBAction)resetLifetime:(id)sender;
 - (IBAction)showSessionPanel:(id)sender;
 
+- (void)reset:(BOOL)all;
 - (void)startMonitoring;
 - (void)stopMonitoring;
-
 - (void)update;
 
 @end

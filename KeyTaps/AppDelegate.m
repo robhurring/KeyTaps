@@ -11,6 +11,7 @@
 #import "KTSession.h"
 #import "KTSessionCell.h"
 #import "KTSessionPanelController.h"
+#import "KTResetPanelController.h"
 
 @interface AppDelegate (PrivateMethods)
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView;
@@ -22,7 +23,7 @@
 @implementation AppDelegate
 
 @synthesize keyTaps;
-@synthesize sessionPanelController;
+@synthesize sessionPanelController, resetPanelController;
 @synthesize dataFile;
 @synthesize numberFormatter, dateFormatter;
 
@@ -34,7 +35,6 @@
 @synthesize lastResetLabel;
 @synthesize sessionsTableView;
 @synthesize lifetimeLabel;
-@synthesize resetPanel;
 
 # pragma mark App Lifecycle
 
@@ -61,8 +61,11 @@
   keyTaps = [[KTApp alloc] initWithDataFile:dataFile];
 
   sessionPanelController = [[KTSessionPanelController alloc] initWithDelegate:self];
-  [keyTaps addObserver:self forKeyPath:@"currentTaps" options:NSKeyValueChangeReplacement context:nil];
-
+  resetPanelController = [[KTResetPanelController alloc] initWithDelegate:self];
+  
+  [keyTaps addObserver:self forKeyPath:kTapsChangedEvent options:NSKeyValueChangeReplacement context:nil];
+  NSLog(@"%@", sessionPanelController);
+  
   [self update];
   [self startMonitoring];
 }
@@ -112,7 +115,9 @@
 
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-  if ([keyPath isEqualToString:@"currentTaps"])
+  NSLog(@"KeyPath: %@", keyPath);
+  
+  if ([keyPath isEqualToString:kTapsChangedEvent])
   {
     [self update];
   }
@@ -147,6 +152,13 @@
 
 # pragma mark Actions
 
+- (void)reset:(BOOL)all
+{
+  [keyTaps reset:all];
+  [sessionsTableView reloadData];
+  [self update];
+}
+
 - (IBAction)showSessionPanel:(id)sender
 {
   [sessionPanelController showPanel];
@@ -154,23 +166,7 @@
 
 - (IBAction)showResetPanel:(id)sender
 {
-  [resetPanel setIsVisible:YES];
-}
-
-- (IBAction)resetSession:(id)sender
-{
-  [keyTaps reset:NO];
-  [resetPanel setIsVisible:NO];
-  [sessionsTableView reloadData];
-  [self update];
-}
-
-- (IBAction)resetLifetime:(id)sender
-{
-  [keyTaps reset:YES];
-  [resetPanel setIsVisible:NO];
-  [sessionsTableView reloadData];
-  [self update];
+  [resetPanelController showPanel];
 }
 
 # pragma mark UI

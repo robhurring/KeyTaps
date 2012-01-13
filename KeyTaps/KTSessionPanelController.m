@@ -20,10 +20,10 @@
 
 - (id)initWithDelegate:(AppDelegate *)appDelegate
 {
-  if(self = [self initWithNibName:@"SessionPanel" bundle:nil])
+  if(self = [self initWithNibName:@"KTSessionPanel" bundle:nil])
   {
     self.delegate = appDelegate;
-    [self.delegate.keyTaps addObserver:self forKeyPath:@"currentTaps" options:NSKeyValueChangeReplacement context:nil];
+    [self.delegate.keyTaps addObserver:self forKeyPath:kTapsChangedEvent options:NSKeyValueChangeReplacement context:nil];
   }
   return self;
 }
@@ -46,12 +46,12 @@
 
 - (IBAction)resetSession:(id)sender
 {
-  [delegate resetSession:sender];
+  [delegate reset:NO];
 }
 
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-  if ([keyPath isEqualToString:@"currentTaps"])
+  if ([keyPath isEqualToString:kTapsChangedEvent])
   {
     NSString *output = [delegate.numberFormatter stringFromNumber:[delegate.keyTaps getTaps]];
     [tapsLabel setTitleWithMnemonic:output];

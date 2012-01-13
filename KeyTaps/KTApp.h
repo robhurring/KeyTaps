@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #define MAX_SESSIONS 5
+#define kTapsChangedEvent @"taps"
 
 @class KTSession;
 
