@@ -11,10 +11,10 @@
 		B7AAD75714C0AAFB00426265 /* KTSession.m in Sources */ = {isa = PBXBuildFile; fileRef = B7AAD75614C0AAFB00426265 /* KTSession.m */; };
 		B7AAD75C14C0AB4600426265 /* KTResetPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7AAD75A14C0AB4600426265 /* KTResetPanelController.m */; };
 		B7AAD75D14C0AB4600426265 /* KTResetPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7AAD75B14C0AB4600426265 /* KTResetPanel.xib */; };
+		B7AAD77414C0D4D600426265 /* Icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = B7AAD77314C0D4D600426265 /* Icon.icns */; };
 		B7B699CA14BF7AE30069497D /* KTSessionPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7B699C814BF7AE30069497D /* KTSessionPanelController.m */; };
 		B7B699CD14BF7B690069497D /* KTSessionPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7B699CC14BF7B690069497D /* KTSessionPanel.xib */; };
 		B7C9EB7B14BF59DB003DB399 /* KTSessionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B7C9EB7A14BF59DB003DB399 /* KTSessionCell.m */; };
-		D416885E14BBB7060008ACFC /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D416885D14BBB7060008ACFC /* icon.png */; };
 		D4F84A3614BB8ADD00CDE1F0 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4F84A3514BB8ADD00CDE1F0 /* Cocoa.framework */; };
 		D4F84A4014BB8ADD00CDE1F0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D4F84A3E14BB8ADD00CDE1F0 /* InfoPlist.strings */; };
 		D4F84A4214BB8ADD00CDE1F0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F84A4114BB8ADD00CDE1F0 /* main.m */; };
@@ -34,13 +34,13 @@
 		B7AAD75914C0AB4600426265 /* KTResetPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTResetPanelController.h; sourceTree = "<group>"; };
 		B7AAD75A14C0AB4600426265 /* KTResetPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTResetPanelController.m; sourceTree = "<group>"; };
 		B7AAD75B14C0AB4600426265 /* KTResetPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KTResetPanel.xib; sourceTree = "<group>"; };
+		B7AAD77314C0D4D600426265 /* Icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Icon.icns; path = ../Icon.icns; sourceTree = "<group>"; };
 		B7B699C714BF7AE30069497D /* KTSessionPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTSessionPanelController.h; sourceTree = "<group>"; };
 		B7B699C814BF7AE30069497D /* KTSessionPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTSessionPanelController.m; sourceTree = "<group>"; };
 		B7B699CC14BF7B690069497D /* KTSessionPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KTSessionPanel.xib; sourceTree = "<group>"; };
 		B7C9EB7914BF59DB003DB399 /* KTSessionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTSessionCell.h; sourceTree = "<group>"; };
 		B7C9EB7A14BF59DB003DB399 /* KTSessionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTSessionCell.m; sourceTree = "<group>"; };
 		D416885B14BBB6E90008ACFC /* KeyTaps-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "KeyTaps-Info.plist"; sourceTree = "<group>"; };
-		D416885D14BBB7060008ACFC /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		D4F84A3514BB8ADD00CDE1F0 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		D4F84A3814BB8ADD00CDE1F0 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		D4F84A3914BB8ADD00CDE1F0 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -155,8 +155,8 @@
 		D4F84A3C14BB8ADD00CDE1F0 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B7AAD77314C0D4D600426265 /* Icon.icns */,
 				D4F84A8214BBAA1900CDE1F0 /* keytap-alt.png */,
-				D416885D14BBB7060008ACFC /* icon.png */,
 				D4F84A8014BBA89B00CDE1F0 /* keytap.png */,
 				D416885B14BBB6E90008ACFC /* KeyTaps-Info.plist */,
 				D4F84A3E14BB8ADD00CDE1F0 /* InfoPlist.strings */,
@@ -223,9 +223,9 @@
 				D4F84A4C14BB8ADD00CDE1F0 /* App.xib in Resources */,
 				D4F84A8114BBA89B00CDE1F0 /* keytap.png in Resources */,
 				D4F84A8314BBAA1900CDE1F0 /* keytap-alt.png in Resources */,
-				D416885E14BBB7060008ACFC /* icon.png in Resources */,
 				B7B699CD14BF7B690069497D /* KTSessionPanel.xib in Resources */,
 				B7AAD75D14C0AB4600426265 /* KTResetPanel.xib in Resources */,
+				B7AAD77414C0D4D600426265 /* Icon.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -17,15 +17,12 @@
 
 @property (retain) NSMutableArray *sessions;
 @property (retain) KTSession *currentSession;
-@property (assign) long long lifetime;
+@property (retain) NSNumber *lifetime;
+@property (retain) NSDate *lifetimeLastReset;
 
--(id) initWithDataFile:(NSString *)path;
--(void) saveToFile:(NSString *)dataFile;
--(void) increment;
--(void) reset:(BOOL)all;
-
--(NSNumber *)getTaps;
--(NSDate *)getLastReset;
--(NSNumber *)getLifetime;
+- (id)initWithDataFile:(NSString *)path;
+- (void)saveToFile:(NSString *)dataFile;
+- (void)increment;
+- (void)reset:(BOOL)all;
 
 @end

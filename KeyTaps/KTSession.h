@@ -11,11 +11,11 @@
 @interface KTSession : NSObject <NSCoding>
 
 @property (retain) NSDate *date;
-@property (assign) long long taps;
+@property (retain) NSNumber *taps;
 
--(id) initWithCoder:(NSCoder *)coder;
+- (id)initWithCoder:(NSCoder *)coder;
 - (id)initWithTaps:(NSNumber *)myTaps andDate:(NSDate *)myDate;
--(void) encodeWithCoder:(NSCoder *)encoder;
--(void) increment;
+- (void)encodeWithCoder:(NSCoder *)encoder;
+- (void)increment;
 
 @end

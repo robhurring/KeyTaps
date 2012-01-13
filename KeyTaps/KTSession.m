@@ -15,7 +15,7 @@
 
 - (id)initWithCoder:(NSCoder *)coder {
   return [self 
-          initWithTaps:[coder decodeObjectForKey:@"taps"] 
+          initWithTaps:[coder decodeObjectForKey:@"taps"]
           andDate:[coder decodeObjectForKey:@"date"]];
 }
 
@@ -23,7 +23,7 @@
 {
   if(self = [super init])
   {
-    self.taps = [myTaps longLongValue];
+    self.taps = myTaps;
     self.date = myDate;
   }
   return self;
@@ -31,18 +31,18 @@
 
 -  (id)init
 {
-  return [self initWithTaps:[NSNumber numberWithLongLong:0] andDate:[NSDate date]];
+  return [self initWithTaps:[NSNumber numberWithUnsignedLong:0] andDate:[NSDate date]];
 }
 
 - (void)encodeWithCoder:(NSCoder *)encoder
 {
   [encoder encodeObject:date forKey:@"date"];
-  [encoder encodeObject:[NSNumber numberWithLongLong:taps] forKey:@"taps"];
+  [encoder encodeObject:taps forKey:@"taps"];
 }
 
 -(void) increment
 {
-  taps++;
+  taps = [NSNumber numberWithUnsignedLong:[taps unsignedLongValue]+1];
 }
 
 @end

@@ -20,6 +20,7 @@
 @property (retain) IBOutlet NSMenu *appMenu;
 @property (retain) IBOutlet NSTextField *charCountLabel;
 @property (retain) IBOutlet NSTextField *lastResetLabel;
+@property (retain) IBOutlet NSTextField *lifetimeCountLabel;
 @property (retain) IBOutlet NSTextField *lifetimeLabel;
 @property (retain) IBOutlet NSTableView *sessionsTableView;
 

@@ -9,6 +9,7 @@
 #import "KTSessionPanelController.h"
 #import "AppDelegate.h"
 #import "KTApp.h"
+#import "KTSession.h"
 
 @interface KTSessionPanelController (PrivateMethods)
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context;
@@ -53,7 +54,7 @@
 {
   if ([keyPath isEqualToString:kTapsChangedEvent])
   {
-    NSString *output = [delegate.numberFormatter stringFromNumber:[delegate.keyTaps getTaps]];
+    NSString *output = [delegate.numberFormatter stringFromNumber:delegate.keyTaps.currentSession.taps];
     [tapsLabel setTitleWithMnemonic:output];
   }
 }

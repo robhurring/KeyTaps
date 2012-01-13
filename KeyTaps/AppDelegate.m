@@ -36,6 +36,7 @@
 @synthesize lastResetLabel;
 @synthesize sessionsTableView;
 @synthesize lifetimeLabel;
+@synthesize lifetimeCountLabel;
 
 # pragma mark App Lifecycle
 
@@ -142,7 +143,7 @@
   KTSession *session = [keyTaps.sessions objectAtIndex:row];
   KTSessionCell *cell = [tableView makeViewWithIdentifier:@"SessionCell" owner:self];
     
-  NSString *output = [numberFormatter stringFromNumber:[NSNumber numberWithLongLong:session.taps]];
+  NSString *output = [numberFormatter stringFromNumber:session.taps];
   [cell.tapsLabel setTitleWithMnemonic:output];
   
   output = [dateFormatter stringFromDate:session.date];
@@ -175,14 +176,21 @@
 
 -(void) update
 {
-  NSString *output = [numberFormatter stringFromNumber:[keyTaps getTaps]];
+  NSString *output = [numberFormatter stringFromNumber:keyTaps.currentSession.taps];
   [charCountLabel setTitleWithMnemonic:output];
   
-  output = [numberFormatter stringFromNumber:[keyTaps getLifetime]];
-  [lifetimeLabel setTitleWithMnemonic:output];
+  output = [numberFormatter stringFromNumber:keyTaps.lifetime];
+  [lifetimeCountLabel setTitleWithMnemonic:output];
   
-  output = [dateFormatter stringFromDate:[keyTaps getLastReset]];
+  output = [dateFormatter stringFromDate:keyTaps.currentSession.date];
   [lastResetLabel setTitleWithMnemonic:[NSString stringWithFormat:@"Chars since %@", output]];
+
+  NSDateFormatterStyle _old_style = [dateFormatter dateStyle];
+  [dateFormatter setDateStyle:kCFDateFormatterShortStyle];
+  
+  output = [dateFormatter stringFromDate:keyTaps.lifetimeLastReset];
+  [lifetimeLabel setTitleWithMnemonic:[NSString stringWithFormat:@"Lifetime (%@)", output]];
+  [dateFormatter setDateStyle:_old_style];
 }
 
 @end

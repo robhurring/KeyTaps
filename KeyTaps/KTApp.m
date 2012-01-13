@@ -14,6 +14,7 @@
 @synthesize currentSession;
 @synthesize sessions;
 @synthesize lifetime;
+@synthesize lifetimeLastReset;
 
 -(id) initWithDataFile:(NSString *)path
 {
@@ -27,7 +28,8 @@
       
       currentSession = [unarchiver decodeObjectForKey:@"currentSession"];
       sessions = [unarchiver decodeObjectForKey:@"sessions"];
-      lifetime = [[unarchiver decodeObjectForKey:@"lifetime"] longLongValue];      
+      lifetime = [unarchiver decodeObjectForKey:@"lifetime"];
+      lifetimeLastReset = [unarchiver decodeObjectForKey:@"lifetimeLastReset"];
       [unarchiver finishDecoding];
     }
   }
@@ -39,7 +41,8 @@
 {
   if(self = [super init])
   {
-    lifetime = 0LL;
+    lifetime = [NSNumber numberWithUnsignedLong:0L];
+    lifetimeLastReset = [NSDate date];
     currentSession = [[KTSession alloc] init];
     sessions = [NSMutableArray array];
   }
@@ -54,7 +57,8 @@
   
   [archiver encodeObject:currentSession forKey:@"currentSession"];
   [archiver encodeObject:sessions forKey:@"sessions"];
-  [archiver encodeObject:[NSNumber numberWithLongLong:lifetime] forKey:@"lifetime"];
+  [archiver encodeObject:lifetime forKey:@"lifetime"];
+  [archiver encodeObject:lifetimeLastReset forKey:@"lifetimeLastReset"];
   [archiver finishEncoding];
   
   [data writeToFile:dataFile atomically:YES];
@@ -63,7 +67,7 @@
 -(void) increment
 {
   [self willChangeValueForKey:kTapsChangedEvent];
-  lifetime++;
+  lifetime = [NSNumber numberWithUnsignedLong:[lifetime unsignedLongValue]+1];
   [currentSession increment];
   [self didChangeValueForKey:kTapsChangedEvent];
 }
@@ -75,14 +79,15 @@
   // delete all sessions & the lifetime count
   if(all)
   {
-    lifetime = 0LL;
+    lifetime = [NSNumber numberWithUnsignedLong:0];
+    lifetimeLastReset = [NSDate date];
     sessions = [NSMutableArray array];
     currentSession = [[KTSession alloc] init];
     return;
   }
 
   // add to our sessions list if we have >0 taps
-  if(currentSession.taps > 0)
+  if([currentSession.taps unsignedLongValue] > 0)
   {
     // get my "dateOnly"
     unsigned int flags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit;
@@ -111,7 +116,10 @@
     // merge current session with existing taps
     if(matched)
     {
-      matched.taps += currentSession.taps;
+      unsigned long tmp1, tmp2;
+      tmp1 = [matched.taps unsignedLongValue];
+      tmp2 = [currentSession.taps unsignedLongValue];
+      matched.taps = [NSNumber numberWithUnsignedLong:tmp1 + tmp2];      
     }else{
       [sessions addObject:currentSession];      
     }
@@ -122,25 +130,10 @@
       [sessions removeObjectsInRange:NSMakeRange(0, end)];
     }
   }
-      
+
   currentSession = [[KTSession alloc] init];
   
   [self didChangeValueForKey:kTapsChangedEvent];
-}
-
--(NSDate *)getLastReset
-{
-  return currentSession.date;
-}
-
--(NSNumber *)getTaps
-{
-  return [NSNumber numberWithLongLong:currentSession.taps];
-}
-
--(NSNumber *)getLifetime
-{
-  return [NSNumber numberWithLongLong:lifetime];
 }
 
 @end

@@ -436,14 +436,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
-						<string key="label">lifetimeLabel</string>
-						<reference key="source" ref="976324537"/>
-						<reference key="destination" ref="44028340"/>
-					</object>
-					<int key="connectionID">592</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
 						<string key="label">sessionsTableView</string>
 						<reference key="source" ref="976324537"/>
 						<reference key="destination" ref="111371345"/>
@@ -465,6 +457,22 @@
 						<reference key="destination" ref="771252228"/>
 					</object>
 					<int key="connectionID">706</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">lifetimeCountLabel</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="44028340"/>
+					</object>
+					<int key="connectionID">714</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">lifetimeLabel</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="33594726"/>
+					</object>
+					<int key="connectionID">715</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -839,7 +847,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">713</int>
+			<int key="maxID">715</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -864,6 +872,7 @@
 						<string key="appMenu">NSMenu</string>
 						<string key="charCountLabel">NSTextField</string>
 						<string key="lastResetLabel">NSTextField</string>
+						<string key="lifetimeCountLabel">NSTextField</string>
 						<string key="lifetimeLabel">NSTextField</string>
 						<string key="sessionsTableView">NSTableView</string>
 					</dictionary>
@@ -878,6 +887,10 @@
 						</object>
 						<object class="IBToOneOutletInfo" key="lastResetLabel">
 							<string key="name">lastResetLabel</string>
+							<string key="candidateClassName">NSTextField</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="lifetimeCountLabel">
+							<string key="name">lifetimeCountLabel</string>
 							<string key="candidateClassName">NSTextField</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="lifetimeLabel">
