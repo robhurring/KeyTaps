@@ -3,8 +3,6 @@
 *~.nib
 
 build/
-*.xcodeproj
-
 *.pbxuser
 *.perspective
 *.perspectivev3
