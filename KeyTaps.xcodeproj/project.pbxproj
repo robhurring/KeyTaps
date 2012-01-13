@@ -11,8 +11,6 @@
 		B7AAD75714C0AAFB00426265 /* KTSession.m in Sources */ = {isa = PBXBuildFile; fileRef = B7AAD75614C0AAFB00426265 /* KTSession.m */; };
 		B7AAD75C14C0AB4600426265 /* KTResetPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7AAD75A14C0AB4600426265 /* KTResetPanelController.m */; };
 		B7AAD75D14C0AB4600426265 /* KTResetPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7AAD75B14C0AB4600426265 /* KTResetPanel.xib */; };
-		B7AAD76114C0B2EB00426265 /* KTMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7AAD75F14C0B2EB00426265 /* KTMenuViewController.m */; };
-		B7AAD76214C0B2EB00426265 /* KTMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7AAD76014C0B2EB00426265 /* KTMenuView.xib */; };
 		B7B699CA14BF7AE30069497D /* KTSessionPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7B699C814BF7AE30069497D /* KTSessionPanelController.m */; };
 		B7B699CD14BF7B690069497D /* KTSessionPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7B699CC14BF7B690069497D /* KTSessionPanel.xib */; };
 		B7C9EB7B14BF59DB003DB399 /* KTSessionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B7C9EB7A14BF59DB003DB399 /* KTSessionCell.m */; };
@@ -36,9 +34,6 @@
 		B7AAD75914C0AB4600426265 /* KTResetPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTResetPanelController.h; sourceTree = "<group>"; };
 		B7AAD75A14C0AB4600426265 /* KTResetPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTResetPanelController.m; sourceTree = "<group>"; };
 		B7AAD75B14C0AB4600426265 /* KTResetPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KTResetPanel.xib; sourceTree = "<group>"; };
-		B7AAD75E14C0B2EB00426265 /* KTMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTMenuViewController.h; sourceTree = "<group>"; };
-		B7AAD75F14C0B2EB00426265 /* KTMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTMenuViewController.m; sourceTree = "<group>"; };
-		B7AAD76014C0B2EB00426265 /* KTMenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; path = KTMenuView.xib; sourceTree = "<group>"; };
 		B7B699C714BF7AE30069497D /* KTSessionPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTSessionPanelController.h; sourceTree = "<group>"; };
 		B7B699C814BF7AE30069497D /* KTSessionPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTSessionPanelController.m; sourceTree = "<group>"; };
 		B7B699CC14BF7B690069497D /* KTSessionPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KTSessionPanel.xib; sourceTree = "<group>"; };
@@ -91,7 +86,6 @@
 				D4F84A4A14BB8ADD00CDE1F0 /* App.xib */,
 				B7B699CC14BF7B690069497D /* KTSessionPanel.xib */,
 				B7AAD75B14C0AB4600426265 /* KTResetPanel.xib */,
-				B7AAD76014C0B2EB00426265 /* KTMenuView.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -103,8 +97,6 @@
 				B7B699C814BF7AE30069497D /* KTSessionPanelController.m */,
 				B7AAD75914C0AB4600426265 /* KTResetPanelController.h */,
 				B7AAD75A14C0AB4600426265 /* KTResetPanelController.m */,
-				B7AAD75E14C0B2EB00426265 /* KTMenuViewController.h */,
-				B7AAD75F14C0B2EB00426265 /* KTMenuViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -234,7 +226,6 @@
 				D416885E14BBB7060008ACFC /* icon.png in Resources */,
 				B7B699CD14BF7B690069497D /* KTSessionPanel.xib in Resources */,
 				B7AAD75D14C0AB4600426265 /* KTResetPanel.xib in Resources */,
-				B7AAD76214C0B2EB00426265 /* KTMenuView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,7 +243,6 @@
 				B7B699CA14BF7AE30069497D /* KTSessionPanelController.m in Sources */,
 				B7AAD75714C0AAFB00426265 /* KTSession.m in Sources */,
 				B7AAD75C14C0AB4600426265 /* KTResetPanelController.m in Sources */,
-				B7AAD76114C0B2EB00426265 /* KTMenuViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,6 +14,7 @@
 #import "KTResetPanelController.h"
 
 @interface AppDelegate (PrivateMethods)
+- (void)setupMenu;
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView;
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row;
 - (BOOL)selectionShouldChangeInTableView:(NSTableView *)aTableView;
@@ -40,17 +41,6 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-  menuImage = [[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForImageResource:@"keytap.png"]];
-  menuImageAlt = [[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForImageResource:@"keytap-alt.png"]];
-  
-  statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
-  [statusItem setMenu:appMenu];
-  [statusItem setImage:menuImage];
-  [statusItem setAlternateImage:menuImageAlt];
-  
-  [statusItem setHighlightMode:YES];
-  [statusItem setTarget:self];
-  
   numberFormatter = [[NSNumberFormatter alloc] init];
   [numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
   
@@ -64,10 +54,24 @@
   resetPanelController = [[KTResetPanelController alloc] initWithDelegate:self];
   
   [keyTaps addObserver:self forKeyPath:kTapsChangedEvent options:NSKeyValueChangeReplacement context:nil];
-  NSLog(@"%@", sessionPanelController);
-  
+ 
+  [self setupMenu];
   [self update];
   [self startMonitoring];
+}
+
+- (void)setupMenu
+{
+  menuImage = [[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForImageResource:@"keytap.png"]];
+  menuImageAlt = [[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForImageResource:@"keytap-alt.png"]];
+  
+  statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
+  [statusItem setMenu:appMenu];
+  [statusItem setImage:menuImage];
+  [statusItem setAlternateImage:menuImageAlt];
+  
+  [statusItem setHighlightMode:YES];
+  [statusItem setTarget:self];
 }
 
 -(void) applicationWillTerminate:(NSNotification *)notification
@@ -115,8 +119,6 @@
 
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-  NSLog(@"KeyPath: %@", keyPath);
-  
   if ([keyPath isEqualToString:kTapsChangedEvent])
   {
     [self update];
