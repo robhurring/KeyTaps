@@ -1,5 +1,5 @@
-KeyTaps
-=======
+KeyTaps (OSX Lion only)
+=======================
 
 It started as a thought. How many keys to you type in a given day as a developer? How long would it take you to reach 1M keystrokes? 
 I figured it couldn't be hard to make a very basic key logger that just keeps track of how many keys you type in a given "session." Turns out
