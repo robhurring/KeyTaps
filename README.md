@@ -16,9 +16,10 @@ Well, its about this easy I found out:
       taps++;
     }];
 
-The app kind of spiraled down some weird paths from there... Heres what it currently looks like:
+The app kind of spiraled down some weird paths from there... It is also **lion specific** since I used menu views in a few places, which aren't
+supported < Lion.
 
-Screens!@@#!1
+Screens!
 -------------
 
 Heres how it sits in your menu: 
