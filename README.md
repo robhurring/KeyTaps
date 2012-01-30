@@ -25,10 +25,6 @@ Heres how it sits in your menu:
 
 ![in menu](https://raw.github.com/robhurring/KeyTaps/master/.images/in-menu.png)
 
-Heres the Details of the pulldown:
-
-![drop menu](https://raw.github.com/robhurring/KeyTaps/master/.images/menu-dropdown.png)
-
 And if you want to run a focused session as you code (to watch the numbers fly on by!)
 It currently tracks your last 5 sessions. The each time you reset the session your total goes into your daily aggregate bucket. (Not very accurate across multiple days).
 
