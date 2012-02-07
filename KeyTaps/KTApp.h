@@ -24,5 +24,6 @@
 - (void)saveToFile:(NSString *)dataFile;
 - (void)increment;
 - (void)reset:(BOOL)all;
+- (void)reverseSessions;
 
 @end

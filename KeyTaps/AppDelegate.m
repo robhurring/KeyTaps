@@ -140,14 +140,29 @@
 
 - (NSTableCellView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 {
+  NSString *output, *sessionEndDate;
+  NSDateFormatterStyle oldFormatterStyle;
+  
   KTSession *session = [keyTaps.sessions objectAtIndex:row];
   KTSessionCell *cell = [tableView makeViewWithIdentifier:@"SessionCell" owner:self];
     
-  NSString *output = [numberFormatter stringFromNumber:session.taps];
-  [cell.tapsLabel setTitleWithMnemonic:output];
+  output = [numberFormatter stringFromNumber:session.taps];
+  [cell.tapsLabel setTitleWithMnemonic:[NSString stringWithFormat:@"%@ Chars", output]];
+
+  oldFormatterStyle = [dateFormatter dateStyle];
+  [dateFormatter setDateStyle:kCFDateFormatterShortStyle];
   
   output = [dateFormatter stringFromDate:session.date];
-  [cell.dateLabel setTitleWithMnemonic:[NSString stringWithFormat:@"Chars on %@", output]];
+  sessionEndDate = [dateFormatter stringFromDate:session.endDate];
+  
+  if(sessionEndDate)
+  {
+    [cell.dateLabel setTitleWithMnemonic:[NSString stringWithFormat:@"%@ - %@", output, sessionEndDate]];  
+  }else{
+    [cell.dateLabel setTitleWithMnemonic:[NSString stringWithFormat:@"On %@", output, sessionEndDate]];  
+  }
+  
+  [dateFormatter setDateStyle:oldFormatterStyle];
 
   return cell;
   

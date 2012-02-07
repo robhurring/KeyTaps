@@ -31,6 +31,7 @@
       lifetime = [unarchiver decodeObjectForKey:@"lifetime"];
       lifetimeLastReset = [unarchiver decodeObjectForKey:@"lifetimeLastReset"];
       [unarchiver finishDecoding];
+      [self reverseSessions];
     }
   }
   
@@ -48,6 +49,13 @@
   }
   
   return self;
+}
+
+- (void)reverseSessions
+{
+  NSMutableArray *tmp;
+  tmp = (NSMutableArray *)[[sessions reverseObjectEnumerator] allObjects];
+  self.sessions = tmp;
 }
 
 -(void) saveToFile:(NSString *)dataFile
@@ -76,6 +84,9 @@
 {
   [self willChangeValueForKey:kTapsChangedEvent];
 
+  // set our end date for the current session
+  currentSession.endDate = [NSDate date];
+  
   // delete all sessions & the lifetime count
   if(all)
   {
@@ -121,7 +132,8 @@
       tmp2 = [currentSession.taps unsignedLongValue];
       matched.taps = [NSNumber numberWithUnsignedLong:tmp1 + tmp2];      
     }else{
-      [sessions addObject:currentSession];      
+      [sessions addObject:currentSession];  
+      [self reverseSessions];
     }
     
     if([sessions count] > MAX_SESSIONS)
